@@ -6,17 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   </head>
   <body>
     <div class="container-fluid">
+
+      <!-- initico Título -->
       <div class="row">
         <div class="col-xs-12">
           <h1>Con SmartLife GANÁ!</h1>
           <h3>Un premio allinclusive a tu elección!</h3>
         </div>
       </div>
-      <!-- inicio Navegación tabs-->
+      <!-- fin Título -->
+
+      <!-- inicio Navegación tabs -->
       <div class="row">
         <div class="col-xs-12 wizard-inner">
           <div class="connecting-line"></div>
@@ -24,110 +28,185 @@
             <li role="presentation" class="active">
               <a href="#step1" data-toggle="tab" aria-controls="step1" role="tab" title="Step 1">
                 <span class="round-tab">
-                  <i class="step"> 1 </i>
+                  <i class="step">1</i>
                 </span>
               </a>
             </li>
             <li role="presentation" class="disabled">
               <a href="#step2" data-toggle="tab" aria-controls="step2" role="tab" title="Step 2">
                 <span class="round-tab">
-                  <i class="step"> 2 </i>
+                  <i class="step">2</i>
                 </span>
               </a>
             </li>
           </ul>
         </div>
       </div>
-      <!-- fin Navegación tabs-->
+      <!-- fin Navegación tabs -->
+
       <div class="row">
         <div class="col-xs-12 col-md-offset-4 col-md-4">
-          <form class="form-inline" role="form">
+          <form class="form-horizontal" role="form">
 
             <div class="tab-content">
 
-              <!-- inicio formulario 1-->
+              <!-- inicio Formulario 1 -->
               <div class="tab-pane active" role="tabpanel" id="step1">
-                <div class="form-group col-xs-12 col-md-6">
-                  <label for="producto" class=".sr-only">Producto comprado</label>
-                  <select class="form-control form-control-width-small" id="producto">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                  </select>
-                </div>
+
+                <!-- inicio Producto comprado -->
                 <div class="form-group">
-                  <div class="form-group col-xs-12 col-md-4">
-                    <label for="codigo">Código producto</label>
-                    <select class="form-control form-control-width-small" id="codigo">
+                  <label for="producto" class="col-xs-12">Producto comprado</label>
+                  <div class="col-xs-12">
+                    <select class="form-control" id="producto">
                       <option>1</option>
                       <option>2</option>
                       <option>3</option>
                       <option>4</option>
                     </select>
                   </div>
-                  <div class="form-group col-xs-12 col-md-4">
-                    <label for="cantidad">Cantidad comprada</label>
-                    <input type="text" id="cantidad" class="form-control form-control-width-small">
-                  </div>
+                </div>
+                <!-- fin Producto comprado -->
+
+                <!-- inicio Código producto y Cantidad comprada -->
+                <div class="form-group">
+                  <label class="col-xs-6" for="codigo">Código producto</label>
+                  <label class="col-xs-6" for="cantidad">Cantidad comprada</label>
                 </div>
                 <div class="form-group">
-                  <button type="submit" class="btn btn-default col-xs-12 col-md-6">Agregar otro</button>
-                  <button type="submit" class="btn btn-default col-xs-12 col-md-6">Siquiente</button>
+                  <div class="col-xs-6">
+                    <select class="form-control" id="codigo">
+                      <option>1</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                    </select>
+                  </div>
+                  <div class="col-xs-6">
+                    <input type="text" id="cantidad" class="form-control">
+                  </div>
                 </div>
-                <div class="form-group col-xs-12 col-md-12">
-                  <label for="chances">Chances generadas</label>
-                  <input type="text" id="chances" class="form-control form-control-width-small" placeholder="0">
-                </div>
-              </div>
-              <!-- fin formulario 1-->
+                <!-- fin Código producto y Cantidad comprada -->
 
-              <hr>
+                <!-- inicio Botones agregar otro y siguiente -->
+                <div class="form-group">
+                  <div class="col-xs-6">
+                    <button type="button" class="btn btn-default">Agregar otro</button>
+                  </div>
+                  <div class="col-xs-6">
+                    <button type="button" class="btn btn-default">Siquiente</button>
+                  </div>
+                </div>
+                <!-- fin Botones agregar otro y siguiente -->
+
+              </div>
+              <!-- fin Formulario 1 -->
+
+
+
+                <!-- inicio Formulario 2 -->
+                <div class="tab-pane active" role="tabpanel" id="step2">
+
+                  <!-- inicio Lugar de compra y Número factura -->
+                  <div class="form-group">
+                    <label class="col-xs-6" for="codigo">Código producto</label>
+                    <label class="col-xs-6" for="cantidad">Cantidad comprada</label>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-xs-6">
+                      <select class="form-control" id="codigo">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                      </select>
+                    </div>
+                    <div class="col-xs-6">
+                      <input type="text" id="cantidad" class="form-control">
+                    </div>
+                  </div>
+                  <!-- fin Producto comprado -->
+
+                  <!-- inicio Código producto y Cantidad comprada -->
+                  <div class="form-group">
+                    <label class="col-xs-6" for="codigo">Código producto</label>
+                    <label class="col-xs-6" for="cantidad">Cantidad comprada</label>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-xs-6">
+                      <select class="form-control" id="codigo">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                      </select>
+                    </div>
+                    <div class="col-xs-6">
+                      <input type="text" id="cantidad" class="form-control">
+                    </div>
+                  </div>
+                  <!-- fin Código producto y Cantidad comprada -->
+
+                  <!-- inicio Botones agregar otro y siguiente -->
+                  <div class="form-group">
+                    <div class="col-xs-6">
+                      <button type="button" class="btn btn-default">Agregar otro</button>
+                    </div>
+                    <div class="col-xs-6">
+                      <button type="button" class="btn btn-default">Siquiente</button>
+                    </div>
+                  </div>
+                  <!-- fin Botones agregar otro y siguiente -->
+
+                </div>
+                <!-- fin Formulario 2 -->
 
               <!-- inicio formulario 2-->
               <div class="tab-pane active" role="tabpanel" id="step2">
                 <div class="form-group">
                   <div class="form-group col-xs-12 col-md-6">
-                    <label for="lugar" class=".sr-only">Lugar de compra</label>
+                    <label for="lugar">Lugar de compra</label>
                     <input type="text" name="lugar" id="lugar" class="form-control col-xs-12 col-md-6" placeholder="Lugar de compra">
                   </div>
                   <div class="form-group col-xs-12 col-md-6">
-                    <label for="factura" class=".sr-only">Numero de factura</label>
+                    <label for="factura">Numero de factura</label>
                     <input type="text" name="factura" id="factura" class="form-control col-xs-12 col-md-6" placeholder="Número de factura">
                   </div>
                 </div>
                 <div class="form-group col-xs-12 col-md-4">
                   <label for="nombre">Nombre completo</label>
-                  <input type="text" id="nombre" class="form-control form-control-width-small">
+                  <input type="text" id="nombre" class="form-control">
                 </div>
-              </div>
 
-              <div class="form-group">
-                <div class="form-group col-xs-12 col-md-6">
-                  <label for="cedula" class=".sr-only">C.I.</label>
-                  <input type="text" name="cedula" id="cedula" class="form-control col-xs-12 col-md-6" placeholder="sin puntos ni guiones">
+                <div class="form-group">
+                  <div class="form-group col-xs-12 col-md-6">
+                    <label for="cedula">C.I.</label>
+                    <input type="text" name="cedula" id="cedula" class="form-control col-xs-12 col-md-6" placeholder="sin puntos ni guiones">
+                  </div>
+                  <div class="form-group col-xs-12 col-md-6">
+                    <label for="celular">Celular</label>
+                    <input type="text" name="celular" id="celular" class="form-control col-xs-12 col-md-6" placeholder="Número de celular">
+                  </div>
                 </div>
-                <div class="form-group col-xs-12 col-md-6">
-                  <label for="celular" class=".sr-only">Celular</label>
-                  <input type="text" name="celular" id="celular" class="form-control col-xs-12 col-md-6" placeholder="Número de celular">
-                </div>
-              </div>
 
-              <div class="form-group col-xs-12 col-md-4">
-                <label for="email">Email</label>
-                <input type="text" id="email" class="form-control form-control-width-small">
-              </div>
+                <div class="form-group col-xs-12 col-md-4">
+                  <label for="email">Email</label>
+                  <input type="text" id="email" class="form-control">
+                </div>
+            </div>
 
             </div>
 
             <div class="form-group">
               <button type="submit" class="btn btn-default col-xs-12 col-md-12">Enviar</button>
             </div>
-            <div class="form-group col-xs-12 col-md-12">
-              <label for="chances">Chances generadas</label>
-              <input type="text" id="chances" class="form-control form-control-width-small" placeholder="0">
-            </div>
           </form>
+
+          <div class="row">
+            <div class="col-xs-12 col-md-12">
+              <label for="chances">Chances generadas</label>
+              <input type="text" id="chances" class="form-control">
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -137,7 +216,7 @@
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="/script.js"></script>
+    <script type="text/javascript" src="/js/script.js"></script>
 
   </body>
 </html>

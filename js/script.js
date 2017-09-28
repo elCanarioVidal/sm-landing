@@ -1,7 +1,7 @@
 $(window).on('load', function () {
   $.ajax({
     type: 'post',
-    url: '/logica.php',
+    url: '/php/logica.php',
     dataType: 'json',
     data: {
       accion: 'listadoProductos',
