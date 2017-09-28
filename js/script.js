@@ -14,8 +14,10 @@ $(window).on('load', function () {
     data: {
       accion: 'listadoProductos',
     },
-    success: function (response) {
-      console.log(response);
+    success: function (productos) {
+      productos.forEach(function (producto) {
+        $('#producto').append($('<option>' + producto + '</option>', { value: producto }));
+      });
     },
 
     error: function (error) {
