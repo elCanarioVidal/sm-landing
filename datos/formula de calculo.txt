@@ -1,0 +1,5 @@
+Cada usuario podrá participar de la siguiente modalidad: 
+U$S 1 a U$S 50 tendrá 1 chance, 
+U$S 50 a U$S 100 tendrá 3 chances, 
+U$S 100 a U$S 500 tendrá 5 chances, 
+de U$S 500 en adelante tendrá 10 chances 
