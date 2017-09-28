@@ -1,3 +1,11 @@
+function siguiente() {
+  $('a[href="#step2"]').tab('show');
+}
+
+function agregar() {
+  $('.agregados').append($('<hr>')).append($('#compra').clone());
+}
+
 $(window).on('load', function () {
   $.ajax({
     type: 'post',
