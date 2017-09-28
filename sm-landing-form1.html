@@ -53,48 +53,49 @@
 
               <!-- inicio Formulario 1 -->
               <div class="tab-pane active" role="tabpanel" id="step1">
+                <div id="compra">
 
-                <!-- inicio Producto comprado -->
-                <div class="form-group">
-                  <label for="producto" class="col-xs-12">Producto comprado</label>
-                  <div class="col-xs-12">
-                    <select class="form-control" id="producto">
-                      <option>1</option>
-                      <option>2</option>
-                      <option>3</option>
-                      <option>4</option>
-                    </select>
+                  <!-- inicio Producto comprado -->
+                  <div class="form-group">
+                    <label for="producto" class="col-xs-12">Producto comprado</label>
+                    <div class="col-xs-12">
+                      <select class="form-control" id="producto">
+                        <option disabled hidden selected value></option>
+                        <!-- Carga con Ajax -->
+                      </select>
+                    </div>
                   </div>
-                </div>
-                <!-- fin Producto comprado -->
+                  <!-- fin Producto comprado -->
 
-                <!-- inicio Código producto y Cantidad comprada -->
-                <div class="form-group">
-                  <label class="col-xs-6" for="codigo">Código producto</label>
-                  <label class="col-xs-6" for="cantidad">Cantidad comprada</label>
-                </div>
-                <div class="form-group">
-                  <div class="col-xs-6">
-                    <select class="form-control" id="codigo">
-                      <option>1</option>
-                      <option>2</option>
-                      <option>3</option>
-                      <option>4</option>
-                    </select>
+                  <!-- inicio Código producto y Cantidad comprada -->
+                  <div class="form-group">
+                    <label class="col-xs-6" for="codigo">Código producto</label>
+                    <label class="col-xs-6" for="cantidad">Cantidad comprada</label>
                   </div>
-                  <div class="col-xs-6">
-                    <input type="text" id="cantidad" class="form-control">
+                  <div class="form-group">
+                    <div class="col-xs-6">
+                      <select class="form-control" id="codigo">
+                        <option disabled hidden selected value></option>
+                        <!-- Carga con Ajax -->
+                      </select>
+                    </div>
+                    <div class="col-xs-6">
+                      <input type="text" id="cantidad" class="form-control">
+                    </div>
                   </div>
+                  <!-- fin Código producto y Cantidad comprada -->
+
                 </div>
-                <!-- fin Código producto y Cantidad comprada -->
+
+                <div class="agregados"></div>
 
                 <!-- inicio Botones agregar otro y siguiente -->
                 <div class="form-group">
                   <div class="col-xs-6">
-                    <button type="button" class="btn btn-default">Agregar otro</button>
+                    <button type="button" class="btn btn-default" onclick="agregar()">Agregar otro</button>
                   </div>
                   <div class="col-xs-6">
-                    <button type="button" class="btn btn-default">Siquiente</button>
+                    <button type="button" class="btn btn-default" onclick="siguiente()">Siquiente</button>
                   </div>
                 </div>
                 <!-- fin Botones agregar otro y siguiente -->
@@ -102,69 +103,67 @@
               </div>
               <!-- fin Formulario 1 -->
 
+              <!-- inicio Formulario 2 -->
+              <div class="tab-pane" role="tabpanel" id="step2">
 
-
-                <!-- inicio Formulario 2 -->
-                <div class="tab-pane" role="tabpanel" id="step2">
-
-                  <!-- inicio Lugar de compra y Número factura -->
-                  <div class="form-group">
-                    <label class="col-xs-6" for="codigo">Lugar de compra</label>
-                    <label class="col-xs-6" for="cantidad">Número de factura</label>
-                  </div>
-                  <div class="form-group">
-                    <div class="col-xs-6">
-                      <input type="text" name="lugar" id="lugar" class="form-control">
-                    </div>
-                    <div class="col-xs-6">
-                      <input type="text" name="factura" id="factura" class="form-control">
-                    </div>
-                  </div>
-                  <!-- fin Lugar de compra y Número factura -->
-
-                  <!-- inicio Nombre completo -->
-                  <div class="form-group">
-                    <label for="producto" class="col-xs-12">Producto comprado</label>
-                    <div class="col-xs-12">
-                      <input type="text" name="nombre" id="nombre" class="form-control">
-                    </div>
-                  </div>
-                  <!-- fin Nombre completo -->
-
-                    <!-- inicio CI y Celular -->
-                    <div class="form-group">
-                      <label class="col-xs-6" for="codigo">C.I.</label>
-                      <label class="col-xs-6" for="cantidad">CELULAR</label>
-                    </div>
-                    <div class="form-group">
-                      <div class="col-xs-6">
-                        <input type="text" name="ci" id="ci" class="form-control">
-                      </div>
-                      <div class="col-xs-6">
-                        <input type="text" name="celular" id="celular" class="form-control">
-                      </div>
-                    </div>
-                    <!-- fin CI y Celular -->
-
-                    <!-- inicio Email -->
-                    <div class="form-group">
-                      <label for="producto" class="col-xs-12">Email</label>
-                      <div class="col-xs-12">
-                        <input type="email" name="email" id="email" class="form-control">
-                      </div>
-                    </div>
-                    <!-- fin Email -->
-
-                  <!-- inicio Botón enviar -->
-                  <div class="form-group">
-                    <div class="col-xs-12 text-center">
-                      <button type="submit" class="btn btn-default">Enviar</button>
-                    </div>
-                  </div>
-                  <!-- fin Botón enviar -->
-
+                <!-- inicio Lugar de compra y Número factura -->
+                <div class="form-group">
+                  <label class="col-xs-6" for="codigo">Lugar de compra</label>
+                  <label class="col-xs-6" for="cantidad">Número de factura</label>
                 </div>
-                <!-- fin Formulario 2 -->
+                <div class="form-group">
+                  <div class="col-xs-6">
+                    <input type="text" name="lugar" id="lugar" class="form-control">
+                  </div>
+                  <div class="col-xs-6">
+                    <input type="text" name="factura" id="factura" class="form-control">
+                  </div>
+                </div>
+                <!-- fin Lugar de compra y Número factura -->
+
+                <!-- inicio Nombre completo -->
+                <div class="form-group">
+                  <label for="producto" class="col-xs-12">Producto comprado</label>
+                  <div class="col-xs-12">
+                    <input type="text" name="nombre" id="nombre" class="form-control">
+                  </div>
+                </div>
+                <!-- fin Nombre completo -->
+
+                  <!-- inicio CI y Celular -->
+                  <div class="form-group">
+                    <label class="col-xs-6" for="codigo">C.I.</label>
+                    <label class="col-xs-6" for="cantidad">CELULAR</label>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-xs-6">
+                      <input type="text" name="ci" id="ci" class="form-control">
+                    </div>
+                    <div class="col-xs-6">
+                      <input type="text" name="celular" id="celular" class="form-control">
+                    </div>
+                  </div>
+                  <!-- fin CI y Celular -->
+
+                  <!-- inicio Email -->
+                  <div class="form-group">
+                    <label for="producto" class="col-xs-12">Email</label>
+                    <div class="col-xs-12">
+                      <input type="email" name="email" id="email" class="form-control">
+                    </div>
+                  </div>
+                  <!-- fin Email -->
+
+                <!-- inicio Botón enviar -->
+                <div class="form-group">
+                  <div class="col-xs-12 text-center">
+                    <button type="submit" class="btn btn-default">Enviar</button>
+                  </div>
+                </div>
+                <!-- fin Botón enviar -->
+
+              </div>
+              <!-- fin Formulario 2 -->
 
             </div>
 
