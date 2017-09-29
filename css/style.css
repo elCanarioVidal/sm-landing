@@ -1,0 +1,12 @@
+body{
+	color: #333333;
+}
+.hero {
+	background-image:url("../img/back_landing_2.jpg");
+	background-repeat: no-repeat;
+	background-size: 740px;
+	height: 495px;
+}
+.hero-btns {
+	top: 450px;
+}
