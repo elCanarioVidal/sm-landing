@@ -93,6 +93,7 @@ function enviarEmail($nombre, $email, $chances) {
 
 function recepcionFormulario($datos) {
   $lugar = $datos['lugar'];
+  $factura = $datos['factura'];
   $nombre = $datos['nombre'];
   $ci = $datos['ci'];
   $celular = $datos['celular'];
@@ -100,7 +101,7 @@ function recepcionFormulario($datos) {
   $productos = $datos['productos'];
   $chances = calcularChances($productos);
   if ($chances) { // Si no falló el cálculo de chances => guardar los datos
-    if (guardarDatos($lugar, $nombre, $ci, $celular, $email, $productos, $chances)) {
+    if (guardarDatos($lugar, $factura, $nombre, $ci, $celular, $email, $productos, $chances)) {
       enviarEmail($nombre, $email, $chances);
       die(json_encode(array('exito' => true)));
     } else {

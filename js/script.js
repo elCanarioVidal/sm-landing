@@ -1,3 +1,9 @@
+// Expresión regular para chequear los emails
+const regex = new RegExp([
+  '^(([^<>()\\[\\]\\.,;:\\s@\\"]+(\\.[^<>()\\[\\]\\.,;:\\s@\\"]+)*)',
+  '|(\\".+\\"))@(([^<>()[\\]\\.,;:\\s@\\"]+\\.)+[^<>()[\\]\\.,;:\\s@\\"]{2,})$',
+].join(''));
+
 // Botones paso 1
 const $agregarOtro = $('#agregarOtro');
 const $siguiente = $('#siguiente');
@@ -5,13 +11,16 @@ const $siguiente = $('#siguiente');
 // Span chances
 const $chances = $('#chances');
 
+// Div para mensajes al usuario
+const $mensaje = $('#mensaje');
+
 // Campos formulario
 const $form = $('form');
 const $producto = $('#producto');
 const $codigo = $('#codigo');
 const $cantidad = $('#cantidad');
 const $lugar = $('#lugar');
-const $numero = $('#numero');
+const $factura = $('#factura');
 const $nombre = $('#nombre');
 const $ci = $('#ci');
 const $celular = $('#celular');
@@ -45,7 +54,7 @@ function agregarSeleccionados(nombre, codigo, cantidad) {
       nombre: nombre,
       codigo: codigo,
       cantidad: cantidad,
-      chances: calcularChancesProducto(codigo, cantidad),
+      chances: calcularChancesSeleccion(codigo, cantidad),
     });
 
     // Vaciar los campos del formulario
@@ -74,6 +83,12 @@ function borrarSleccionado(e) {
   calcularChances();
 }
 
+function borrarSeleccionados() {
+  seleccionados.splice(0, seleccionados.length);
+  $('.agregados').html('');
+}
+
+// Agregar un producto al DOM y a la lista de seleccionados
 function agregar() {
   const nombre = $producto.val();
   const codigo = $codigo.val();
@@ -104,28 +119,22 @@ function agregar() {
         )
       )
     );
+    calcularChances();
   }
 }
 
-// TODO: REFACTOR
+// Calcular las chances acumuladas por todos los productos seleccionados (compras)
 function calcularChances() {
-  const nombre = $producto.val();
-  const codigo = $codigo.val();
-  const cantidad = $cantidad.val();
   var chances = 0;
-  if ((nombre) && (codigo) && (cantidad)) {
-    datos.forEach(function (dato) {
-      if (dato.codigo === codigo) {
-        chances = dato.chances * cantidad;
-        return;
-      }
-    });
-  }
+  seleccionados.forEach(function (seleccionado) {
+    chances += seleccionado.chances;
+  });
 
   $chances.html(chances);
 }
 
-function calcularChancesProducto(codigo, cantidad) {
+// Calcular las chances generadas por una selección (compra)
+function calcularChancesSeleccion(codigo, cantidad) {
   var chances = 0;
   if ((codigo) && (cantidad)) {
     datos.forEach(function (dato) {
@@ -139,6 +148,7 @@ function calcularChancesProducto(codigo, cantidad) {
   return chances;
 }
 
+// Filtrar los nombres de productos repetidos y guardarlos en "productos"
 function filtrarRepetidos() {
   datos.forEach(function (dato) {
     if (productos.indexOf(dato.nombre) === -1) {
@@ -147,6 +157,7 @@ function filtrarRepetidos() {
   });
 }
 
+// Desplegar las opciones para el input de "Producto comprado"
 function mostrarProductos() {
   productos.forEach(function (producto) {
     $producto.append(
@@ -155,6 +166,7 @@ function mostrarProductos() {
   });
 }
 
+// Desplegar las opciones de códigos para el producto seleccionado
 function mostrarCodigos(e) {
   const nombre = e.target.value;
   $codigo.html('<option disabled hidden selected value></option>');
@@ -168,14 +180,86 @@ function mostrarCodigos(e) {
   });
 }
 
-// TODO: ESCRIBIR FUNCIÓN
-function validarFormulario() {
-  return true;
+// Mostrar un mensaje al usuario confirmando el éxito de una acción
+function mensajeExito(mensaje) {
+  $mensaje.removeClass('alert-danger');
+  $mensaje.addClass('alert-success');
+  $mensaje.html(mensaje);
+  $mensaje.slideDown();
 }
 
-function limpiarFormulario() {
+// Mostrar un mensaje al usuario avisando del fracaso de una acción
+function mensajeFracaso(mensaje) {
+  $mensaje.removeClass('alert-success');
+  $mensaje.addClass('alert-danger');
+  $mensaje.html(mensaje);
+  $mensaje.slideDown();
+}
+
+// Oculta los mensajes
+function ocultarMensaje() {
+  $mensaje.slideUp();
+}
+
+// Validar los datos del formulario
+function validarFormulario() {
+  var mensaje = '';
+  $('input').parent().removeClass('has-error');
+  $('select').parent().removeClass('has-error');
+  if (!$lugar.val()) {
+    $lugar.parent().addClass('has-error');
+    mensaje += '<p>Ingrese el lugar de compra</p>';
+  }
+
+  if (!$factura.val()) {
+    $factura.parent().addClass('has-error');
+    mensaje += '<p>Ingrese el número de factura</p>';
+  }
+
+  if (!$nombre.val()) {
+    $nombre.parent().addClass('has-error');
+    mensaje += '<p>Ingrese su nombre completo</p>';
+  }
+
+  if (!$ci.val()) {
+    $ci.parent().addClass('has-error');
+    mensaje += '<p>Ingrese su CI</p>';
+  } else if (!validarCi($ci.val())) {
+    $ci.parent().addClass('has-error');
+    mensaje += '<p>Ingrese una CI correcta</p>';
+  }
+
+  if (!$celular.val()) {
+    $celular.parent().addClass('has-error');
+    mensaje += '<p>Ingrese su celular</p>';
+  }
+
+  if (!$email.val()) {
+    $email.parent().addClass('has-error');
+    mensaje += '<p>Ingrese su email</p>';
+  } else if (!regex.test($email.val())) {
+    $email.parent().addClass('has-error');
+    mensaje += '<p>Ingrese un email válido</p>';
+  }
+
+  if (!seleccionados.length) {
+    $producto.parent().addClass('has-error');
+    $codigo.parent().addClass('has-error');
+    $cantidad.parent().addClass('has-error');
+    mensaje += '<p>Ingrese al menos una compra</p>';
+  }
+
+  if (mensaje != '') {
+    mensajeFracaso(mensaje);
+  } else {
+    ocultarMensaje();
+  }
+}
+
+// Limpiar los datos del formulario y el arreglo de productos seleciconados
+function borrarFormulario() {
   $lugar.val('');
-  $numero.val('');
+  $factura.val('');
   $nombre.val('');
   $ci.val('');
   $celular.val('');
@@ -183,25 +267,26 @@ function limpiarFormulario() {
   $producto.val('');
   $codigo.val('');
   $cantidad.val('');
-  productos.splice(0, productos.length);
+  borrarSeleccionados();
 }
 
+// Enviar el formulario al servidor
 function envioFormulario(e) {
   e.preventDefault();
   const nombre = $producto.val();
   const codigo = $codigo.val();
   const cantidad = $cantidad.val();
 
-  agregarSeleccionados(nombre, codigo, cantidad);
+  agregar();
 
-  if ((seleccionados.length) && (validarFormulario())) {
+  if (validarFormulario()) {
     const datos = {
-      lugar: $('#lugar').val(),
-      numero: $('#numero').val(),
-      nombre: $('#nombre').val(),
-      ci: $('#ci').val(),
-      celular: $('#celular').val(),
-      email: $('#email').val(),
+      lugar: $lugar.val(),
+      factura: $factura.val(),
+      nombre: $nombre.val(),
+      ci: $ci.val(),
+      celular: $celular.val(),
+      email: $email.val(),
       productos: seleccionados,
     };
     $.ajax({
@@ -214,21 +299,23 @@ function envioFormulario(e) {
       },
       success: function (res) {
         if (res.exito) {
-          limpiarFormulario();
-          mensajeExito();
+          borrarFormulario();
+          mensajeExito('Sus compras fueron registradas con éxito');
         } else {
-          console.error(res.error);
+          mensajeFracaso(res.error);
         }
       },
 
       error: function (error) {
-        console.error(error);
+        mensajeFracaso(error);
       },
     });
   }
 }
 
 $(window).on('load', function () {
+
+  // Cargar el listado de productos desde el servidor
   $.ajax({
     type: 'post',
     url: 'php/logica.php',
@@ -242,12 +329,12 @@ $(window).on('load', function () {
         filtrarRepetidos();
         mostrarProductos();
       } else {
-        console.error(data.error);
+        mensajeFracaso(data.error);
       }
     },
 
     error: function (error) {
-      console.error(error);
+      mensajeFracaso(error);
     },
   });
 
