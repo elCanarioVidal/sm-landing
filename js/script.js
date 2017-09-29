@@ -1,32 +1,54 @@
+// Botones paso 1
 const $agregarOtro = $('#agregarOtro');
 const $siguiente = $('#siguiente');
+
+// Span chances
+const $chances = $('#chances');
+
+// Campos formulario
+const $form = $('form');
 const $producto = $('#producto');
 const $codigo = $('#codigo');
 const $cantidad = $('#cantidad');
-const $chances = $('#chances');
-const $form = $('form');
+const $lugar = $('#lugar');
+const $numero = $('#numero');
+const $nombre = $('#nombre');
+const $ci = $('#ci');
+const $celular = $('#celular');
+const $email = $('#email');
 
+// Datos del formulario
 var datos = {};
+
+// Productos del sistema
 const productos = [];
+
+// Selección del productos del usuario (compras)
 const seleccionados = [];
 
+// Al hacer click en siguiente en el paso 1
 function siguiente() {
   const nombre = $producto.val();
   const codigo = $codigo.val();
   const cantidad = $cantidad.val();
-  agregar();
-  if (seleccionados.length) {
+  agregar(); // Agregar la selección al arreglo seleccionados
+  if (seleccionados.length) { // Si hubo seleccionados cambiar de paso
     $('a[href="#step2"]').tab('show');
   }
 }
 
+// Agregar producto al arreglo de productos seleciconados
 function agregarSeleccionados(nombre, codigo, cantidad) {
   if ((nombre) && (codigo) && (cantidad)) {
+    // Si los datos están => agregar al arreglo
     seleccionados.push({
       nombre: nombre,
       codigo: codigo,
       cantidad: cantidad,
+      chances: calcularChancesProducto(codigo, cantidad),
     });
+
+    // Vaciar los campos del formulario
     $producto.val('');
     $codigo.val('');
     $cantidad.val('');
@@ -36,6 +58,7 @@ function agregarSeleccionados(nombre, codigo, cantidad) {
   }
 }
 
+// Eliminar del arreglo de productos seleccionados y sacar del DOM
 function borrarSleccionado(e) {
   const $seleccion = $(e.target.parentElement);
   const codigo = $seleccion.find('.producto-codigo').html();
@@ -102,6 +125,20 @@ function calcularChances() {
   $chances.html(chances);
 }
 
+function calcularChancesProducto(codigo, cantidad) {
+  var chances = 0;
+  if ((codigo) && (cantidad)) {
+    datos.forEach(function (dato) {
+      if (dato.codigo === codigo) {
+        chances = dato.chances * cantidad;
+        return;
+      }
+    });
+  }
+
+  return chances;
+}
+
 function filtrarRepetidos() {
   datos.forEach(function (dato) {
     if (productos.indexOf(dato.nombre) === -1) {
@@ -132,11 +169,24 @@ function mostrarCodigos(e) {
 }
 
 // TODO: ESCRIBIR FUNCIÓN
-function validarForm() {
+function validarFormulario() {
   return true;
 }
 
-function submit(e) {
+function limpiarFormulario() {
+  $lugar.val('');
+  $numero.val('');
+  $nombre.val('');
+  $ci.val('');
+  $celular.val('');
+  $email.val('');
+  $producto.val('');
+  $codigo.val('');
+  $cantidad.val('');
+  productos.splice(0, productos.length);
+}
+
+function envioFormulario(e) {
   e.preventDefault();
   const nombre = $producto.val();
   const codigo = $codigo.val();
@@ -144,7 +194,7 @@ function submit(e) {
 
   agregarSeleccionados(nombre, codigo, cantidad);
 
-  if ((seleccionados.length) && (validarForm())) {
+  if ((seleccionados.length) && (validarFormulario())) {
     const datos = {
       lugar: $('#lugar').val(),
       numero: $('#numero').val(),
@@ -163,41 +213,20 @@ function submit(e) {
         form: datos,
       },
       success: function (res) {
-        alert('exito');
-        console.log(res);
+        if (res.exito) {
+          limpiarFormulario();
+          mensajeExito();
+        } else {
+          console.error(res.error);
+        }
       },
 
       error: function (error) {
-        console.log(error);
+        console.error(error);
       },
     });
   }
 }
-
-$agregarOtro.on('click', function () {
-  agregar();
-});
-
-$siguiente.on('click', function () {
-  siguiente();
-});
-
-$codigo.on('change input', function () {
-  calcularChances();
-});
-
-$cantidad.on('change input', function () {
-  calcularChances();
-});
-
-$producto.on('change input', function (event) {
-  mostrarCodigos(event);
-  calcularChances();
-});
-
-$form.on('submit', function (event) {
-  submit(event);
-});
 
 $(window).on('load', function () {
   $.ajax({
@@ -208,13 +237,42 @@ $(window).on('load', function () {
       accion: 'listadoProductos',
     },
     success: function (data) {
-      datos = data;
-      filtrarRepetidos();
-      mostrarProductos();
+      if (data.exito) {
+        datos = data.listado;
+        filtrarRepetidos();
+        mostrarProductos();
+      } else {
+        console.error(data.error);
+      }
     },
 
     error: function (error) {
-      console.log(error);
+      console.error(error);
     },
+  });
+
+  $form.on('submit', function (event) {
+    envioFormulario(event);
+  });
+
+  $agregarOtro.on('click', function () {
+    agregar();
+  });
+
+  $siguiente.on('click', function () {
+    siguiente();
+  });
+
+  $codigo.on('change input', function () {
+    calcularChances();
+  });
+
+  $cantidad.on('change input', function () {
+    calcularChances();
+  });
+
+  $producto.on('change input', function (event) {
+    mostrarCodigos(event);
+    calcularChances();
   });
 });
