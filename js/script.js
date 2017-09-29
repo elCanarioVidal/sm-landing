@@ -46,9 +46,9 @@ function siguiente() {
   }
 }
 
-// Agregar producto al arreglo de productos seleciconados
+// Agregar producto al arreglo de productos seleccionados
 function agregarSeleccionados(nombre, codigo, cantidad) {
-  if ((nombre) && (codigo) && (cantidad)) {
+  if ((nombre) && (codigo) && (cantidad) && (Number(cantidad))) {
     // Si los datos están => agregar al arreglo
     seleccionados.push({
       nombre: nombre,
@@ -62,8 +62,14 @@ function agregarSeleccionados(nombre, codigo, cantidad) {
     $codigo.val('');
     $cantidad.val('');
     return true;
-  } else {
+  } else if (!seleccionados.length) {
+    $cantidad.parent().addClass('has-error');
+    $codigo.parent().addClass('has-error');
+    $producto.parent().addClass('has-error');
+    mensajeFracaso('<p>Ingrese al menos una compra correcta</p>');
     return false;
+  } else {
+    ocultarMensaje();
   }
 }
 
@@ -86,6 +92,7 @@ function borrarSleccionado(e) {
 function borrarSeleccionados() {
   seleccionados.splice(0, seleccionados.length);
   $('.agregados').html('');
+  calcularChances();
 }
 
 // Agregar un producto al DOM y a la lista de seleccionados
@@ -251,12 +258,14 @@ function validarFormulario() {
 
   if (mensaje != '') {
     mensajeFracaso(mensaje);
+    return false;
   } else {
     ocultarMensaje();
+    return true;
   }
 }
 
-// Limpiar los datos del formulario y el arreglo de productos seleciconados
+// Limpiar los datos del formulario y el arreglo de productos seleccionados
 function borrarFormulario() {
   $lugar.val('');
   $factura.val('');
@@ -291,16 +300,19 @@ function envioFormulario(e) {
     };
     $.ajax({
       type: 'post',
-      url: 'php/logica.php',
       dataType: 'json',
+      url: 'php/logica.php',
       data: {
         accion: 'envioFormulario',
         form: datos,
       },
       success: function (res) {
         if (res.exito) {
+          const mensaje = 'Sus compras fueron registradas con éxito, usted tiene ' +
+            $chances.html() + ' nuevas chances para el sorteo';
+          mensajeExito(mensaje);
           borrarFormulario();
-          mensajeExito('Sus compras fueron registradas con éxito');
+          setTimeout(function () { ocultarMensaje(); }, 30000);
         } else {
           mensajeFracaso(res.error);
         }
@@ -318,8 +330,8 @@ $(window).on('load', function () {
   // Cargar el listado de productos desde el servidor
   $.ajax({
     type: 'post',
-    url: 'php/logica.php',
     dataType: 'json',
+    url: 'php/logica.php',
     data: {
       accion: 'listadoProductos',
     },

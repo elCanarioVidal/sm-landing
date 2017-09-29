@@ -1,12 +1,22 @@
 <?php
 
+// define('DB_HOST', 'mysql.ares.uy');
+// define('DB_NAME', 'smartlife');
+// define('DB_USER', 'smlife');
+// define('DB_PASS', 'lifeSmart');
+
+define('DB_HOST', 'localhost');
+define('DB_NAME', 'smartlife');
+define('DB_USER', 'root');
+define('DB_PASS', '');
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   switch ($_POST['accion']) {
     case 'listadoProductos':
       die(json_encode(array('exito' => true, 'listado' => listadoProductos())));
       break;
     case 'envioFormulario':
-      echo recepcionFormulario($_POST['form']);
+      recepcionFormulario($_POST['form']);
       break;
     default:
       die();
@@ -53,28 +63,83 @@ function calcularChances($compras) {
     if (($nombre != null) && ($codigo != null) && ($cantidad != null)) {
       // Buscar el producto de la compra en el listado
       foreach ($listado as $producto) {
-        if ($chances !== false) {
-          if ($producto['codigo'] === $codigo) {
-            if ($producto['nombre'] === $nombre) {
-              // Sumar las chances generadas por la compra y continuar con la siguiente
-              $chances += $producto['chances'] * $cantidad;
-              break;
-            } else {
-              // Si el nombre del listado difiere del nombre en la compra => abortar
-              return false;
-            }
+        if ($producto['codigo'] === $codigo) {
+          if ($producto['nombre'] === $nombre) {
+            // Sumar las chances generadas por la compra y continuar con la siguiente
+            $chances += $producto['chances'] * $cantidad;
+            break;
+          } else {
+            // Si el nombre del listado difiere del nombre en la compra => abortar
+            return false;
           }
         }
       }
-      return $chances;
     } else { // Si no están los datos de la compra => fallar
       return false;
     }
   }
+  return $chances;
 }
 
-function guardarDatos($lugar, $nombre, $ci, $celular, $email, $productos, $chances) {
-  return true;
+function guardarDatos($lugar, $factura, $nombre, $ci, $celular, $email, $productos, $chances) {
+  $dberror = false;
+  try {
+    $db = new PDO("mysql:host=".DB_HOST.";port=3306;dbname=".DB_NAME.";charset=utf8", DB_USER, DB_PASS);
+    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+  } catch(Exception $e) {
+    dumpLog($e);
+    $dberror = true;
+  }
+
+  if (!$dberror) {
+    $campos = 'lugar, factura, nombre, ci, celular, email, chances';
+    $valores = ':lugar, :factura, :nombre, :ci, :celular, :email, :chances';
+    try {
+      $db->beginTransaction();
+      $stmt = $db->prepare("INSERT INTO datos ($campos) VALUES ($valores)");
+      $stmt->execute(array(
+        ':lugar' => $lugar,
+        ':factura' => $factura,
+        ':nombre' => $nombre,
+        ':ci' => $ci,
+        ':celular' => $celular,
+        ':email' => $email,
+        ':chances' => $chances
+      ));
+      $id = $db->lastInsertId();
+      $campos = 'nombre, codigo, cantidad, chances, iddatos';
+      $valores = ':nombre, :codigo, :cantidad, :chances, :iddatos';
+      foreach ($productos as $producto) {
+        $stmt = $db->prepare("INSERT INTO productos ($campos) VALUES ($valores)");
+        $stmt->execute(array(
+          ':nombre' => $producto['nombre'],
+          ':codigo' => $producto['codigo'],
+          ':cantidad' => $producto['cantidad'],
+          ':chances' => $producto['chances'],
+          ':iddatos' => $id
+        ));
+      }
+      $campos = 'nombre, ci, celular, iddatos';
+      $valores = ':nombre, :ci, :celular, :iddatos';
+      for ($i = 0; $i < $chances; $i++) {
+        $stmt = $db->prepare("INSERT INTO sorteo ($campos) VALUES ($valores)");
+        $stmt->execute(array(
+          ':nombre' => $nombre,
+          ':ci' => $ci,
+          ':celular' => $celular,
+          ':iddatos' => $id
+        ));
+      }
+      $db->commit();
+      return true;
+    } catch(Exception $e) {
+      $db->rollBack();
+      dumpLog($e);
+      return false;
+    }
+  } else {
+    return false;
+  }
 }
 
 function enviarEmail($nombre, $email, $chances) {
@@ -92,6 +157,7 @@ function enviarEmail($nombre, $email, $chances) {
 }
 
 function recepcionFormulario($datos) {
+  require_once("./ci.php");
   $lugar = $datos['lugar'];
   $factura = $datos['factura'];
   $nombre = $datos['nombre'];
@@ -100,15 +166,21 @@ function recepcionFormulario($datos) {
   $email = $datos['email'];
   $productos = $datos['productos'];
   $chances = calcularChances($productos);
-  if ($chances) { // Si no falló el cálculo de chances => guardar los datos
-    if (guardarDatos($lugar, $factura, $nombre, $ci, $celular, $email, $productos, $chances)) {
-      enviarEmail($nombre, $email, $chances);
-      die(json_encode(array('exito' => true)));
+
+  // Si no falla el cálculo de chances ni la validación de la CI => guardar los datos
+  if ($chances) {
+    if (validarCedula($ci)) {
+      if (guardarDatos($lugar, $factura, $nombre, $ci, $celular, $email, $productos, $chances)) {
+        enviarEmail($nombre, $email, $chances);
+        die(utf8_encode(json_encode(array('exito' => true))));
+      } else {
+        die(utf8_encode(json_encode(array('exito' => false, 'error' => 'Error al guardar en la base de datos'))));
+      }
     } else {
-      die(json_encode(array('exito' => false, 'error' => 'Error en la base de datos')));
+      die(utf8_encode(json_encode(array('exito' => false, 'error' => 'Error al verificar la CI'))));
     }
   } else {
-    die(json_encode(array('exito' => false, 'error' => 'Error al calcular las chances')));
+    die(utf8_encode(json_encode(array('exito' => false, 'error' => 'Error al calcular las chances'))));
   }
 }
 ?>
