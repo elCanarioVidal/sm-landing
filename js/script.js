@@ -4,18 +4,87 @@ const $producto = $('#producto');
 const $codigo = $('#codigo');
 const $cantidad = $('#cantidad');
 const $chances = $('#chances');
+const $form = $('form');
 
 var datos = {};
 const productos = [];
+const seleccionados = [];
 
 function siguiente() {
-  $('a[href="#step2"]').tab('show');
+  const nombre = $producto.val();
+  const codigo = $codigo.val();
+  const cantidad = $cantidad.val();
+  agregar();
+  if (seleccionados.length) {
+    $('a[href="#step2"]').tab('show');
+  }
+}
+
+function agregarSeleccionados(nombre, codigo, cantidad) {
+  if ((nombre) && (codigo) && (cantidad)) {
+    seleccionados.push({
+      nombre: nombre,
+      codigo: codigo,
+      cantidad: cantidad,
+    });
+    $producto.val('');
+    $codigo.val('');
+    $cantidad.val('');
+    return true;
+  } else {
+    return false;
+  }
+}
+
+function borrarSleccionado(e) {
+  const $seleccion = $(e.target.parentElement);
+  const codigo = $seleccion.find('.producto-codigo').html();
+  const cantidad = $seleccion.find('.producto-cantidad').html();
+  seleccionados.forEach(function (seleccionado, index) {
+    if ((seleccionado.codigo === codigo) && (seleccionado.cantidad === cantidad)) {
+      seleccionados.splice(index, 1);
+      return;
+    }
+  });
+
+  $seleccion.remove();
+  calcularChances();
 }
 
 function agregar() {
-  $('.agregados').append($('<hr>')).append($('#compra').clone());
+  const nombre = $producto.val();
+  const codigo = $codigo.val();
+  const cantidad = $cantidad.val();
+  if (agregarSeleccionados(nombre, codigo, cantidad)) {
+    $('.agregados').append(
+      $('<div>', { class: 'seleccion' }).append(
+        $('<hr>'),
+        $('<span>', { class: 'close', text: 'X', onclick: 'borrarSleccionado(event)' })
+      ).append(
+        $('<div>', { class: 'form-group' }).append(
+          $('<label>', { class: 'col-xs-12', text: 'Producto comprado' }),
+          $('<div>', { class: 'col-xs-12' }).append(
+            $('<span>', { class: 'producto-nombre', text: nombre })
+          )
+        ),
+        $('<div>', { class: 'form-group' }).append(
+          $('<label>', { class: 'col-xs-6', text: 'Código producto' }),
+          $('<label>', { class: 'col-xs-6', text: 'Cantidad comprada' }),
+        ),
+        $('<div>', { class: 'form-group' }).append(
+          $('<div>', { class: 'col-xs-6' }).append(
+            $('<span>', { class: 'producto-codigo', text: codigo })
+          ),
+          $('<div>', { class: 'col-xs-6' }).append(
+            $('<span>', { class: 'producto-cantidad', text: cantidad })
+          )
+        )
+      )
+    );
+  }
 }
 
+// TODO: REFACTOR
 function calcularChances() {
   const nombre = $producto.val();
   const codigo = $codigo.val();
@@ -62,6 +131,49 @@ function mostrarCodigos(e) {
   });
 }
 
+// TODO: ESCRIBIR FUNCIÓN
+function validarForm() {
+  return true;
+}
+
+function submit(e) {
+  e.preventDefault();
+  const nombre = $producto.val();
+  const codigo = $codigo.val();
+  const cantidad = $cantidad.val();
+
+  agregarSeleccionados(nombre, codigo, cantidad);
+
+  if ((seleccionados.length) && (validarForm())) {
+    const datos = {
+      lugar: $('#lugar').val(),
+      numero: $('#numero').val(),
+      nombre: $('#nombre').val(),
+      ci: $('#ci').val(),
+      celular: $('#celular').val(),
+      email: $('#email').val(),
+      productos: seleccionados,
+    };
+    $.ajax({
+      type: 'post',
+      url: 'php/logica.php',
+      dataType: 'json',
+      data: {
+        accion: 'envioFormulario',
+        form: datos,
+      },
+      success: function (res) {
+        alert('exito');
+        console.log(res);
+      },
+
+      error: function (error) {
+        console.log(error);
+      },
+    });
+  }
+}
+
 $agregarOtro.on('click', function () {
   agregar();
 });
@@ -81,6 +193,10 @@ $cantidad.on('change input', function () {
 $producto.on('change input', function (event) {
   mostrarCodigos(event);
   calcularChances();
+});
+
+$form.on('submit', function (event) {
+  submit(event);
 });
 
 $(window).on('load', function () {
