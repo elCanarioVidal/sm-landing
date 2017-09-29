@@ -1,10 +1,5 @@
 <?php
 
-// define('DB_HOST', 'mysql.ares.uy');
-// define('DB_NAME', 'smartlife');
-// define('DB_USER', 'smlife');
-// define('DB_PASS', 'lifeSmart');
-
 define('DB_HOST', 'localhost');
 define('DB_NAME', 'smartlife');
 define('DB_USER', 'root');
