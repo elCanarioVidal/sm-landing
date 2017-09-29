@@ -59,7 +59,7 @@
                   <div class="form-group">
                     <label for="producto" class="col-xs-12">Producto comprado</label>
                     <div class="col-xs-12">
-                      <select class="form-control" id="producto">
+                      <select class="form-control" name="producto" id="producto">
                         <option disabled hidden selected value></option>
                         <!-- Carga con Ajax -->
                       </select>
@@ -74,28 +74,30 @@
                   </div>
                   <div class="form-group">
                     <div class="col-xs-6">
-                      <select class="form-control" id="codigo">
+                      <select class="form-control" name="codigo" id="codigo">
                         <option disabled hidden selected value></option>
                         <!-- Carga con Ajax -->
                       </select>
                     </div>
                     <div class="col-xs-6">
-                      <input type="text" id="cantidad" class="form-control">
+                      <input type="number" min="1" id="cantidad" name="cantidad" class="form-control">
                     </div>
                   </div>
                   <!-- fin Código producto y Cantidad comprada -->
 
                 </div>
 
-                <div class="agregados"></div>
+                <div class="agregados">
+                  <!-- Si el usuario selecciona "Agregar otro" se agregan las opciones acá -->
+                </div>
 
                 <!-- inicio Botones agregar otro y siguiente -->
                 <div class="form-group">
                   <div class="col-xs-6">
-                    <button type="button" class="btn btn-default" onclick="agregar()">Agregar otro</button>
+                    <button id="agregarOtro" type="button" class="btn btn-default">Agregar otro</button>
                   </div>
                   <div class="col-xs-6">
-                    <button type="button" class="btn btn-default" onclick="siguiente()">Siquiente</button>
+                    <button id="siguiente" type="button" class="btn btn-default">Siquiente</button>
                   </div>
                 </div>
                 <!-- fin Botones agregar otro y siguiente -->
@@ -108,8 +110,8 @@
 
                 <!-- inicio Lugar de compra y Número factura -->
                 <div class="form-group">
-                  <label class="col-xs-6" for="codigo">Lugar de compra</label>
-                  <label class="col-xs-6" for="cantidad">Número de factura</label>
+                  <label class="col-xs-6" for="lugar">Lugar de compra</label>
+                  <label class="col-xs-6" for="factura">Número de factura</label>
                 </div>
                 <div class="form-group">
                   <div class="col-xs-6">
@@ -123,36 +125,36 @@
 
                 <!-- inicio Nombre completo -->
                 <div class="form-group">
-                  <label for="producto" class="col-xs-12">Producto comprado</label>
+                  <label for="nombre" class="col-xs-12">Nombre completo</label>
                   <div class="col-xs-12">
                     <input type="text" name="nombre" id="nombre" class="form-control">
                   </div>
                 </div>
                 <!-- fin Nombre completo -->
 
-                  <!-- inicio CI y Celular -->
-                  <div class="form-group">
-                    <label class="col-xs-6" for="codigo">C.I.</label>
-                    <label class="col-xs-6" for="cantidad">CELULAR</label>
+                <!-- inicio CI y Celular -->
+                <div class="form-group">
+                  <label class="col-xs-6" for="ci">C.I.</label>
+                  <label class="col-xs-6" for="celular">CELULAR</label>
+                </div>
+                <div class="form-group">
+                  <div class="col-xs-6">
+                    <input type="text" name="ci" id="ci" class="form-control">
                   </div>
-                  <div class="form-group">
-                    <div class="col-xs-6">
-                      <input type="text" name="ci" id="ci" class="form-control">
-                    </div>
-                    <div class="col-xs-6">
-                      <input type="text" name="celular" id="celular" class="form-control">
-                    </div>
+                  <div class="col-xs-6">
+                    <input type="text" name="celular" id="celular" class="form-control">
                   </div>
-                  <!-- fin CI y Celular -->
+                </div>
+                <!-- fin CI y Celular -->
 
-                  <!-- inicio Email -->
-                  <div class="form-group">
-                    <label for="producto" class="col-xs-12">Email</label>
-                    <div class="col-xs-12">
-                      <input type="email" name="email" id="email" class="form-control">
-                    </div>
+                <!-- inicio Email -->
+                <div class="form-group">
+                  <label for="email" class="col-xs-12">Email</label>
+                  <div class="col-xs-12">
+                    <input type="email" name="email" id="email" class="form-control">
                   </div>
-                  <!-- fin Email -->
+                </div>
+                <!-- fin Email -->
 
                 <!-- inicio Botón enviar -->
                 <div class="form-group">
@@ -169,14 +171,14 @@
 
           </form>
 
-          <!-- inicio Changes generadas -->
+          <!-- inicio Chances generadas -->
           <div class="row">
             <div class="col-xs-12 col-md-12">
               <label>Chances generadas</label>
               <span id="chances">0</span>
             </div>
           </div>
-          <!-- fin Changes generadas -->
+          <!-- fin Chances generadas -->
 
         </div>
       </div>

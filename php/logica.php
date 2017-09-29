@@ -21,12 +21,17 @@ function listadoProductos() {
   $productos = [];
   for ($i=1; $i < count($columnas); $i++) {
     $columna = $columnas[$i];
-    array_push($productos, $columna[0]);
+    $producto = array(
+      'nombre' => $columna[0],
+      'codigo' => $columna[1],
+      'chances' => $columna[2]
+    );
+    array_push($productos, $producto);
   }
   die(json_encode($productos));
 }
 
 function recepcionFormulario($datos) {
-
+  die('TODO');
 }
 ?>
