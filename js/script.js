@@ -86,7 +86,7 @@ $producto.on('change input', function (event) {
 $(window).on('load', function () {
   $.ajax({
     type: 'post',
-    url: '/php/logica.php',
+    url: 'php/logica.php',
     dataType: 'json',
     data: {
       accion: 'listadoProductos',
