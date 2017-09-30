@@ -1,12 +1,89 @@
 body{
 	color: #333333;
+	background-image: 
 }
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) { 
+
+
+ }
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+
+
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+	.grilla-premios .row{
+		margin-bottom: 15px;
+	}
+
+}
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+	.grilla-premios .row{
+		margin-bottom: 15px;
+	}
+
+}
+
 .hero {
 	background-image:url("../img/back_landing_2.jpg");
 	background-repeat: no-repeat;
 	background-size: 740px;
-	height: 495px;
+	height: 435px;
 }
 .hero-btns {
-	top: 450px;
+	position: relative;
+	top: 200px;
 }
+.hero-btns button{
+	width: 100%
+}
+.logo{
+	position: relative;
+	float: right;
+	margin-right: 30px;
+}
+.logo-premio{
+	position: relative;
+	background-color: #4173b6;
+	height: 125px;
+}
+.logo-premio img{
+	position: absolute;
+    width: 100px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+}
+.img-premio{
+	height: 125px;
+	overflow: hidden;
+}
+.img-premio img {
+	width: 100%;
+}
+.grilla-premios .row{
+	margin-top: 2rem;
+}
+.gradient{
+	position: absolute;
+	top: 0;
+	z-index: -1000;
+	background: #4274b7; /* Old browsers */
+	background: -moz-linear-gradient(left,  #4274b7 1%, #87c5f0 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(left,  #4274b7 1%,#87c5f0 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to right,  #4274b7 1%,#87c5f0 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4274b7', endColorstr='#87c5f0',GradientType=1 ); /* IE6-9 */
+	width: 100%;
+	height: 110px;
+
+}
+
