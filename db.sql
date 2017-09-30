@@ -21,8 +21,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `smartlife`
 --
-CREATE DATABASE IF NOT EXISTS `smartlife` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `smartlife`;
+-- CREATE DATABASE IF NOT EXISTS `smartlife` DEFAULT CHARACTER SET utf8 COLLATE -- utf8_general_ci;
+-- USE `smartland_smartlife`;
 
 -- --------------------------------------------------------
 

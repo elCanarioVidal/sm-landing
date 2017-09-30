@@ -1,9 +1,9 @@
 <?php
 
 define('DB_HOST', 'localhost');
-define('DB_NAME', 'smartlife');
-define('DB_USER', 'root');
-define('DB_PASS', '');
+define('DB_NAME', 'smartland_smartlife');
+define('DB_USER', 'smartland_dbadmin');
+define('DB_PASS', '17d SL20');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   switch ($_POST['accion']) {
