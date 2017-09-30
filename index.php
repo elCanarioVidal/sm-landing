@@ -15,11 +15,11 @@
   </head>
   <body>
 
-<!---Contenedor principal-->
+    <!---Contenedor principal-->
     <div class="container">
-<!--contenedor landing-->
-     <div class="row">
-<!--contenedor promo-->  
+      <!--contenedor landing-->
+      <div class="row">
+        <!--contenedor promo-->
         <div class="col-md-7 col-xs-12">
           <div class="hero">
             <div class="row">
@@ -40,34 +40,37 @@
             <div class="row">
               <div class="col-md-4 col-xs-12">
                 <div class="logo-premio center-block"><img src="img/viaje.png"></div>
-              </div>    
+              </div>
               <div class="img-premio col-md-4 col-xs-12">
                 <img src="img/casa-premios.jpg">
-              </div> 
+              </div>
               <div class="col-md-4 col-xs-12">
                 <div class="logo-premio"><img src="img/dia.png"></div>
-              </div> 
-            </div>  
+              </div>
+            </div>
             <div class="row">
               <div class="col-md-4 col-xs-12">
                 <div class="img-premio"><img src="img/viaje-premios.jpg"></div>
-              </div>    
+              </div>
               <div class="col-md-4 col-xs-12">
                 <div class="logo-premio"><img src="img/casa.png"></div>
-              </div> 
+              </div>
               <div class="col-md-4 col-xs-12">
                 <div class="img-premio"><img src="img/dia-premios.jpg"></div>
-              </div> 
-            </div> 
+              </div>
+            </div>
           </div>
         </div>
-<!--Fin contenedor promo-->        
+        <!--Fin contenedor promo-->
 
-<!-- Inicio formulario--> 
-<?php require_once("./html/sm-landing-form1.html") ?>  
-<!--Fin formulario-->    
-</div> 
-<!--fin contenedor Landing-->      
+        <!-- Inicio formulario-->
+        <div class="col-md-5 col-xs-12">
+          <?php require_once("./html/sm-landing-form1.html") ?>
+        </div>
+        <!--Fin formulario-->
+
+      </div>
+        <!--fin contenedor Landing-->
 
 <!--Contenedor info-->
 <div class="container">
@@ -145,7 +148,7 @@ tu elección. Ver bases y condiciones en smartlifeallinclusive.com.uy a partir d
 </div>
 <!--fin footer-->
     </div>
-<!--fin contenedor principal-->    
+<!--fin contenedor principal-->
 
 
 <div class="gradient col-md-12 col-xs-12"></div>
@@ -160,4 +163,3 @@ tu elección. Ver bases y condiciones en smartlifeallinclusive.com.uy a partir d
 
   </body>
 </html>
-  
