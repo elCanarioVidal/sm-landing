@@ -63,9 +63,7 @@
     </div>
     <div class="col-md-5">
       <!-- Inicio formulario-->
-        <div class="col-md-5 col-xs-12">
           <?php require_once("./html/sm-landing-form1.html") ?>
-        </div>
        <!--Fin formulario-->
     </div>
   </div>
