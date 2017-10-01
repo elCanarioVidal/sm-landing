@@ -15,12 +15,11 @@
   </head>
   <body>
 
-    <!---Contenedor principal-->
-    <div class="container">
-      <!--contenedor landing-->
-      <div class="row">
-        <!--contenedor promo-->
-        <div class="col-md-7 col-xs-12">
+<div class="container">
+  <div class="promo">
+  <div class="row">
+    <div class="col-md-7">
+      <!--contenedor promo-->
           <div class="hero">
             <div class="row">
               <div class="logo"><img src="img/smallinc-logo.png"></div>
@@ -60,98 +59,124 @@
               </div>
             </div>
           </div>
-        </div>
-        <!--Fin contenedor promo-->
-
-        <!-- Inicio formulario-->
+      <!--Fin contenedor promo-->
+    </div>
+    <div class="col-md-5">
+      <!-- Inicio formulario-->
         <div class="col-md-5 col-xs-12">
           <?php require_once("./html/sm-landing-form1.html") ?>
         </div>
-        <!--Fin formulario-->
-
-      </div>
-        <!--fin contenedor Landing-->
-
-<!--Contenedor info-->
-<div class="container">
-  <div class="row">
-    <div class="col-md-6 col-xs-12">
-      <div class="col-md-6 col-xs-12">
-<h4>PUNTA CANA</h4>
-<p>PASAJE IDA Y VUELTA</p>
-<ul>
-<li>5 noches.</li>
-<li>2 adultos + 1 niño hasta 11 años.</li>
-<li>Hotel All inclusive.</li>
-<li>Traslado Aeropuerto - Hotel y Hotel – Aeropuerto.</li>
-<li>Viáticos USD 500.</li>
-</ul>
-      </div>
-      <div class="col-md-6 col-xs-12">
-<h4>DÍA ALL INCLUSIVE</h4>
-
-<ul>
-<li>Tarjeta con $ 60.000 disponibles para realizar el día de tus sueños</li>
-<li>Podrá utilizarse en cualquier comercio o servicio que acepte la misma</li>
-</ul>
-      </div>
-      <div class="col-md-12 col-xs-12">Con la compra de cualquier producto Smartlife participás del sorteo de un premio All Inclusive a
-tu elección. Ver bases y condiciones en smartlifeallinclusive.com.uy a partir del 1/10/2017.</div>
+       <!--Fin formulario-->
     </div>
-    <div class="col-md-6 col-xs-12">
-      <div class="col-md-12 col-sx-12">
-        <h4>CASA ALL INCLUSIVE</h4>
+  </div>
+  </div>
+  <!--Fin promo-->
+  <div class="info">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="row">
+        <div class="col-md-12">
+          <!--título info-->
+            <div class="titulo-info">
+              <p>PREMIOS</p>
+            </div>
+          <!--Fin título info-->  
+        </div>
       </div>
-      <div class="col-md-6 col-sx-12">
-            <ul>
-              <li>Aire Acondicionado SL-ACFC09A</li>
-              <li>Ventilador SL-SF40W</li>
-              <li>Refrigerador SL-RNF320S</li>
-              <li>Lavarropas SL-WMFL601D</li>
-              <li>Microondas SL-MWO20D</li>
-              <li>Horno Eléctrico SL-EO28DG</li>
-              <li>Aspiradora SL-VC870216</li>
-              <li>Estufa Halógena SL-HH120</li>
-              <li>Plancha a Vapor SL-PL2371FF</li>
-            </ul>
-      </div>
-      <div class="col-md-6 col-sx-12">
-            <ul>
-              <li>Batidora SL-HM945B</li>
-              <li>Cafetera Espresso SL-CM4648VE</li>
-              <li>Exprimidor SL-JC5512</li>
-              <li>Jarra Eléctrica SL-CE1510</li>
-              <li>Juguera SL-JE5611</li>
-              <li>Licuadora SL-BL9295D</li>
-              <li>Sandwichera SL-SM6178</li>
-            <li>Tostadora SL-TD8211 </li>
-      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="row">
+            <div class="col-md-6">
+              <h4>PUNTA CANA</h4>
+              <p>PASAJE IDA Y VUELTA</p>
+              <ul>
+              <li>5 noches.</li>
+              <li>2 adultos + 1 niño hasta 11 años.</li>
+              <li>Hotel All inclusive.</li>
+              <li>Traslado Aeropuerto - Hotel y Hotel – Aeropuerto.</li>
+              <li>Viáticos USD 500.</li>
+              </ul>
+            </div>
+            <div class="col-md-6">
+              <h4>DÍA ALL INCLUSIVE</h4>
+              <ul>
+              <li>Tarjeta con $ 60.000 disponibles para realizar el día de tus sueños</li>
+              <li>Podrá utilizarse en cualquier comercio o servicio que acepte la misma</li>
+              </ul>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <p>
+                Con la compra de cualquier producto Smartlife participás del sorteo de un premio All Inclusive a tu elección. Ver bases y condiciones en smartlifeallinclusive.com.uy a partir del 1/10/2017.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="row">
+                 <div class="col-md-12 col-sx-12">
+                    <h4>CASA ALL INCLUSIVE</h4>
+                 </div>                
+                 <div class="col-md-6 col-sx-12">
+                    <ul>
+                      <li>Aire Acondicionado SL-ACFC09A</li>
+                      <li>Ventilador SL-SF40W</li>
+                      <li>Refrigerador SL-RNF320S</li>
+                      <li>Lavarropas SL-WMFL601D</li>
+                      <li>Microondas SL-MWO20D</li>
+                      <li>Horno Eléctrico SL-EO28DG</li>
+                      <li>Aspiradora SL-VC870216</li>
+                      <li>Estufa Halógena SL-HH120</li>
+                      <li>Plancha a Vapor SL-PL2371FF</li>
+                    </ul>
+                  </div>
+                  <div class="col-md-6 col-sx-12">
+                    <ul>
+                      <li>Batidora SL-HM945B</li>
+                      <li>Cafetera Espresso SL-CM4648VE</li>
+                      <li>Exprimidor SL-JC5512</li>
+                      <li>Jarra Eléctrica SL-CE1510</li>
+                      <li>Juguera SL-JE5611</li>
+                      <li>Licuadora SL-BL9295D</li>
+                      <li>Sandwichera SL-SM6178</li>
+                    <li>Tostadora SL-TD8211 </li>
+                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
+  </div>
+  <!--Fin Info-->
 </div>
-<!--Fin Contenedor info-->
-<!--Footer-->
-<div class="container">
-  <div class="row">
-    <div class="col-md-4 col-md-offset-4 col-xs-12">
-      <p align="right">
-        <i class="fa fa-facebook-official"></i> Facebook
-      </p>
+<div class="containerfluid">
+<div class="pie col-md-12 col-xs-12">  
+  <div class="footer">
+    <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="btn-group pull-right"> 
+          <button class="btn btn-default" type="button">
+            <em class="fa fa-facebook-official"></em> Facebook
+          </button> 
+          <button class="btn btn-default" type="button">
+            <em class="fa fa-globe"></em> SitioWeb
+          </button> 
+        </div>
+      </div>
     </div>
-    <div class="col-md-4 col-xs-12">
-      <p align="right">
-        <i class="fa fa-globe"></i> Sitio web
-      </p>
     </div>
   </div>
+  <!--Fin footer-->
 </div>
-<!--fin footer-->
-    </div>
-<!--fin contenedor principal-->
+</div>
 
-
-<div class="gradient col-md-12 col-xs-12"></div>
+<div class="cabezal col-md-12 col-xs-12"></div>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
