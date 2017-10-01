@@ -1,8 +1,8 @@
 <?php
 
 define('DB_HOST', 'localhost');
-define('DB_NAME', 'smartland_smartlife');
-define('DB_USER', 'smartland_dbadmin');
+define('DB_NAME', 'smartlan_smartlife');
+define('DB_USER', 'smartlan_dbadmin');
 define('DB_PASS', '17d SL20');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
