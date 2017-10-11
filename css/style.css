@@ -191,11 +191,49 @@ stylesheet. */
 }
 
 .formulario{
+	display: block;
 	border: 1px solid #85c2eb;
 	border-radius: 15px;
 	margin-top: 30px;
+	padding: 30px 10px;
 }
-
+.bases {
+    position: absolute;
+    bottom: 10px;
+    left: 25%;
+}
+.chances{
+	margin-top: 15px;
+}
+.chances h2{
+	font-size: 2rem;
+}
+.chances p{
+	margin-top: 10px;
+	font-size: 6rem;
+}
+.formulario label{
+	display: none;
+}
+.formulario input::placeholder{
+	font-size: 90%;
+}
+.formulario select::invalid {
+	font-size: 90%;
+}
+.formulario select:required:invalid {
+  color: grey;
+  font-size: 90%;
+}
+.formulario option[value=""][disabled] {
+  display: none;
+}
+.formulario option {
+  color: black;
+}
+.tab-pane{
+	margin-top: 20px;
+}
 //Pantallas
 
 @media (min-width : 5760px) {
@@ -207,12 +245,16 @@ stylesheet. */
     height: 300px;
  }
   .relleno {
- 	color: #fff;display: block;
+ 	color: #fff;
+ 	display: block;
  	position: relative;
 	background-color: #4173b6;
 	padding: 20px;
 	bottom: -20px;
  }
+ .formulario{
+	height: 585px;
+}
     header h1{
 	font-size: 26px;
  }	
