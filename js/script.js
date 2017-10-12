@@ -102,31 +102,31 @@ function agregar() {
   const codigo = $codigo.val();
   const cantidad = $cantidad.val();
   if (agregarSeleccionados(nombre, codigo, cantidad)) {
-    $('.agregados').append(
-      $('<div>', { class: 'seleccion' }).append(
-        $('<hr>'),
-        $('<span>', { class: 'close', text: 'X', onclick: 'borrarSleccionado(event)' })
-      ).append(
-        $('<div>', { class: 'form-group' }).append(
-          $('<label>', { class: 'col-xs-12', text: 'Producto comprado' }),
-          $('<div>', { class: 'col-xs-12' }).append(
-            $('<span>', { class: 'producto-nombre', text: nombre })
-          )
-        ),
-        $('<div>', { class: 'form-group' }).append(
-          $('<label>', { class: 'col-xs-6', text: 'Código producto' }),
-          $('<label>', { class: 'col-xs-6', text: 'Cantidad comprada' }),
-        ),
-        $('<div>', { class: 'form-group' }).append(
-          $('<div>', { class: 'col-xs-6' }).append(
-            $('<span>', { class: 'producto-codigo', text: codigo })
-          ),
-          $('<div>', { class: 'col-xs-6' }).append(
-            $('<span>', { class: 'producto-cantidad', text: cantidad })
-          )
-        )
-      )
-    );
+    // $('.agregados').append(
+    //   $('<div>', { class: 'seleccion' }).append(
+    //     $('<hr>'),
+    //     $('<span>', { class: 'close', text: 'X', onclick: 'borrarSleccionado(event)' })
+    //   ).append(
+    //     $('<div>', { class: 'form-group' }).append(
+    //       $('<label>', { class: 'col-xs-12', text: 'Producto comprado' }),
+    //       $('<div>', { class: 'col-xs-12' }).append(
+    //         $('<span>', { class: 'producto-nombre', text: nombre })
+    //       )
+    //     ),
+    //     $('<div>', { class: 'form-group' }).append(
+    //       $('<label>', { class: 'col-xs-6', text: 'Código producto' }),
+    //       $('<label>', { class: 'col-xs-6', text: 'Cantidad comprada' }),
+    //     ),
+    //     $('<div>', { class: 'form-group' }).append(
+    //       $('<div>', { class: 'col-xs-6' }).append(
+    //         $('<span>', { class: 'producto-codigo', text: codigo })
+    //       ),
+    //       $('<div>', { class: 'col-xs-6' }).append(
+    //         $('<span>', { class: 'producto-cantidad', text: cantidad })
+    //       )
+    //     )
+    //   )
+    // );
     calcularChances();
   }
 }
