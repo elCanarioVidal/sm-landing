@@ -61,6 +61,7 @@ function agregarSeleccionados(nombre, codigo, cantidad) {
     $producto.val('');
     $codigo.val('');
     $cantidad.val('');
+    mostrarCodigos();
     return true;
   } else if (!seleccionados.length) {
     $cantidad.parent().addClass('has-error');
@@ -175,16 +176,18 @@ function mostrarProductos() {
 
 // Desplegar las opciones de códigos para el producto seleccionado
 function mostrarCodigos(e) {
-  const nombre = e.target.value;
-  $codigo.html('<option disabled hidden selected value></option>');
+  $codigo.html('<option disabled hidden selected value>Elige el código</option>');
   $cantidad.val('');
-  datos.forEach(function (dato) {
-    if (dato.nombre === nombre) {
-      $codigo.append(
-        $('<option value="' + dato.codigo + '">' + dato.codigo + '</option>')
-      );
-    }
-  });
+  if (e) {
+    const nombre = e.target.value;
+    datos.forEach(function (dato) {
+      if (dato.nombre === nombre) {
+        $codigo.append(
+          $('<option value="' + dato.codigo + '">' + dato.codigo + '</option>')
+        );
+      }
+    });
+  }
 }
 
 // Mostrar un mensaje al usuario confirmando el éxito de una acción

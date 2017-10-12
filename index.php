@@ -12,7 +12,6 @@
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
     <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <link href="css/style.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- Global Site Tag (gtag.js) - Google Analytics -->
@@ -77,7 +76,7 @@
       <!-- Inicio formulario-->
       <div class="row">
           <?php require_once("./html/sm-landing-form1.html") ?>
-      </div>    
+      </div>
        <!--Fin formulario-->
     </div>
   </div>
@@ -92,7 +91,7 @@
             <div class="titulo-info">
               <h1><a name="premios"></a>PREMIOS</h1>
             </div>
-          <!--Fin título info-->  
+          <!--Fin título info-->
         </div>
       </div>
       <div class="row">
@@ -157,7 +156,7 @@
                       <li>Sandwichera SL-SM6178</li>
                       <li>Tostadora SL-TD8211 </li>
                   </ul>
-                 </div> 
+                 </div>
                  </div>
               </div>
             </div>
@@ -170,15 +169,15 @@
   <!--Fin Info-->
 </div>
 <div class="containerfluid">
-<div class="pie col-md-12 col-xs-12">  
+<div class="pie col-md-12 col-xs-12">
   <div class="footer">
     <div class="container">
     <div class="row">
       <div class="col-md-12 btn-pie">
-        <div class="col-md-2 pull-right"> 
+        <div class="col-md-2 pull-right">
   <a class="pull-right" href="https://www.facebook.com/smartlife.uy/"><i class="fa fa-facebook-official"></i>&nbsp;Facebook</a>
         </div>
-        <div class="col-md-2 pull-right"> 
+        <div class="col-md-2 pull-right">
   <a class="pull-right" href="http://smartlife.com.uy/"><i class="fa fa-globe"></i>&nbsp;SMARTLIFE</a>
         </div>
       </div>
@@ -189,7 +188,7 @@
 </div>
 </div>
 <div class="cabezal col-md-12 col-xs-12"></div>
-        
+
       <div class="modal fade" id="bases" tabindex="-1" role="dialog" aria-labelledby="largeModal" >
           <div class="modal-dialog modal-lg">
             <div class="modal-content">
