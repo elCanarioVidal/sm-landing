@@ -234,9 +234,6 @@ function validarFormulario() {
   if (!$ci.val()) {
     $ci.parent().addClass('has-error');
     mensaje += '<p>Ingrese su CI</p>';
-  } else if (!validarCi($ci.val())) {
-    $ci.parent().addClass('has-error');
-    mensaje += '<p>Ingrese una CI correcta</p>';
   }
 
   if (!$celular.val()) {

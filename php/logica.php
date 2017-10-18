@@ -152,7 +152,6 @@ function enviarEmail($nombre, $email, $chances) {
 }
 
 function recepcionFormulario($datos) {
-  require_once("./ci.php");
   $lugar = $datos['lugar'];
   $factura = $datos['factura'];
   $nombre = $datos['nombre'];
@@ -164,15 +163,11 @@ function recepcionFormulario($datos) {
 
   // Si no falla el cálculo de chances ni la validación de la CI => guardar los datos
   if ($chances) {
-    if (validarCedula($ci)) {
-      if (guardarDatos($lugar, $factura, $nombre, $ci, $celular, $email, $productos, $chances)) {
-        enviarEmail($nombre, $email, $chances);
-        die(utf8_encode(json_encode(array('exito' => true))));
-      } else {
-        die(utf8_encode(json_encode(array('exito' => false, 'error' => 'Error al guardar en la base de datos'))));
-      }
+    if (guardarDatos($lugar, $factura, $nombre, $ci, $celular, $email, $productos, $chances)) {
+      enviarEmail($nombre, $email, $chances);
+      die(utf8_encode(json_encode(array('exito' => true))));
     } else {
-      die(utf8_encode(json_encode(array('exito' => false, 'error' => 'Error al verificar la CI'))));
+      die(utf8_encode(json_encode(array('exito' => false, 'error' => 'Error al guardar en la base de datos'))));
     }
   } else {
     die(utf8_encode(json_encode(array('exito' => false, 'error' => 'Error al calcular las chances'))));
